@@ -101,3 +101,8 @@ tasks:
     desc: PHPUnit generate config
     cmds:
       - docker compose run --rm --no-deps $TTY phpfpm vendor/bin/phpunit --generate-configuration
+
+  unused:
+    desc: Composer unused
+    cmds:
+      - docker compose run --rm --no-deps $TTY phpfpm vendor/bin/composer-unused

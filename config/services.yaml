@@ -22,3 +22,33 @@ services:
 
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones
+
+  # adrenalinkin/doctrine-naming-strategy
+  Linkin\Component\DoctrineNamingStrategy\ORM\Mapping\CamelCaseNamingStrategy:
+
+  monolog.formatter.json:
+    class: Monolog\Formatter\JsonFormatter
+    bind:
+      $includeStacktraces: true
+
+  Monolog\Processor\WebProcessor: ~
+  Monolog\Processor\PsrLogMessageProcessor: ~
+  Monolog\Processor\LoadAverageProcessor: ~
+  Monolog\Processor\MemoryUsageProcessor: ~
+  Monolog\Processor\MemoryPeakUsageProcessor: ~
+  Monolog\Processor\IntrospectionProcessor: ~
+  Monolog\Processor\HostnameProcessor: ~
+
+  # alexandre-daubois/monolog-processor-collection
+  MonologProcessorCollection\UuidProcessor: ~
+  MonologProcessorCollection\SessionIdProcessor: ~
+  MonologProcessorCollection\EnvVarProcessor:
+    arguments:
+      - APP_DOMAIN
+    tags:
+      - { name: monolog.processor, handler: main }
+
+  Symfony\Bridge\Monolog\Processor\RouteProcessor: ~
+  Symfony\Bridge\Monolog\Processor\TokenProcessor: ~
+  Symfony\Bridge\Monolog\Processor\DebugProcessor: ~
+  Symfony\Bridge\Monolog\Processor\ConsoleCommandProcessor: ~
