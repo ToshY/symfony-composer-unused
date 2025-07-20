@@ -65,7 +65,7 @@ Remarks:
 - Library `adrenalinkin/doctrine-naming-strategy` has been used in the [`services.yaml`](./config/services.yaml) but is not recognized as used.
 - Library `alexandre-daubois/monolog-processor-collection` has been used in the [`services.yaml`](./config/services.yaml) but is not recognized as used.
 - Library `dukecity/doctrineextensions` has been used in the [`doctrine_extensions.yaml`](./config/packages/doctrine_extensions.yaml) but is not recognized as used.
-- Additional PHP files in [`config/schemas`] have been added to glob pattern but are not recognized as used.
+- Additional PHP files in [`config/schemas`](./config/schemas) have been added to glob pattern but are not recognized as used.
 
 ---
 
