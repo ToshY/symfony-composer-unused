@@ -78,6 +78,20 @@ services:
     depends_on:
       - phpfpm
 
+  redis:
+    image: redis:${REDIS_IMAGE_VERSION}
+    command: redis-server --include /usr/local/etc/redis/redis.conf --requirepass ${REDIS_PASSWORD}
+    <<: [*restart-always]
+    environment:
+      REDISCLI_AUTH: ${REDIS_PASSWORD}
+    expose:
+      - 6379
+    volumes:
+      - redis_data:/data
+      - ./.docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - webapp
+
   wait:
     image: waisbrot/wait
     environment:
@@ -90,6 +104,8 @@ volumes:
   mysql_data:
     driver: local
   mysql_log:
+    driver: local
+  redis_data:
     driver: local
 
 networks:

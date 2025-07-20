@@ -1,0 +1,29 @@
+name: composer-unused
+
+on:
+  workflow_dispatch:
+
+jobs:
+  composer-unused:
+    name: composer-unused
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions:
+          - '8.2'
+          - '8.3'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: PHPMD
+        run: php vendor/bin/composer-unused

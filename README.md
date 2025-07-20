@@ -1,3 +1,74 @@
+# Composer-unused Symfony example run
+
+With the created [`composer-unused.php`](./composer-unused.php), it results in the following output when run:
+
+```shell
+Results
+-------
+
+Found 2 used, 3 unused, 38 ignored and 0 zombie packages
+
+ Used packages
+ ✓ php
+ ✓ symfony/framework-bundle (https://github.com/symfony/framework-bundle)
+
+ Unused packages
+ ✗ adrenalinkin/doctrine-naming-strategy (https://github.com/adrenalinkin/doctrine-naming-strategy)
+ ✗ alexandre-daubois/monolog-processor-collection (https://github.com/alexandre-daubois/monolog-processor-collection)
+ ✗ dukecity/doctrineextensions (https://github.com/Dukecity/DoctrineExtensions)
+
+ Ignored packages
+ ○ ext-ctype (ignored by PatternFilter(userProvided: true, string: /ext-.*/))
+ ○ ext-iconv (ignored by PatternFilter(userProvided: true, string: /ext-.*/))
+ ○ cmsig/seal-symfony-bundle (https://github.com/PHP-CMSIG/seal-symfony-bundle) (ignored by PatternFilter(userProvided: true, string: /-bundle.*/))
+ ○ doctrine/annotations (https://github.com/doctrine/annotations) (ignored by NamedFilter(userProvided: true, string: doctrine/annotations))
+ ○ doctrine/doctrine-bundle (https://github.com/doctrine/DoctrineBundle) (ignored by PatternFilter(userProvided: true, string: /-bundle.*/))
+ ○ doctrine/doctrine-migrations-bundle (https://github.com/doctrine/DoctrineMigrationsBundle) (ignored by PatternFilter(userProvided: true, string: /-bundle.*/))
+ ○ doctrine/orm (https://github.com/doctrine/orm) (ignored by NamedFilter(userProvided: true, string: doctrine/orm))
+ ○ league/flysystem-bundle (https://github.com/thephpleague/flysystem-bundle) (ignored by PatternFilter(userProvided: true, string: /-bundle.*/))
+ ○ league/flysystem-ftp (https://github.com/thephpleague/flysystem-ftp) (ignored by NamedFilter(userProvided: true, string: league/flysystem-ftp))
+ ○ phpdocumentor/reflection-docblock (https://github.com/phpDocumentor/ReflectionDocBlock) (ignored by NamedFilter(userProvided: true, string: phpdocumentor/reflection-docblock))
+ ○ phpstan/phpdoc-parser (https://github.com/phpstan/phpdoc-parser) (ignored by NamedFilter(userProvided: true, string: phpstan/phpdoc-parser))
+ ○ symfony/asset (https://github.com/symfony/asset) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/console (https://github.com/symfony/console) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/doctrine-messenger (https://github.com/symfony/doctrine-messenger) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/dotenv (https://github.com/symfony/dotenv) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/expression-language (https://github.com/symfony/expression-language) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/flex (https://github.com/symfony/flex) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/form (https://github.com/symfony/form) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/http-client (https://github.com/symfony/http-client) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/intl (https://github.com/symfony/intl) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/mailer (https://github.com/symfony/mailer) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/mime (https://github.com/symfony/mime) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/monolog-bundle (https://github.com/symfony/monolog-bundle) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/notifier (https://github.com/symfony/notifier) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/process (https://github.com/symfony/process) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/property-access (https://github.com/symfony/property-access) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/property-info (https://github.com/symfony/property-info) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/runtime (https://github.com/symfony/runtime) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/security-bundle (https://github.com/symfony/security-bundle) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/serializer (https://github.com/symfony/serializer) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/string (https://github.com/symfony/string) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/translation (https://github.com/symfony/translation) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/twig-bundle (https://github.com/symfony/twig-bundle) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/validator (https://github.com/symfony/validator) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/web-link (https://github.com/symfony/web-link) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ symfony/yaml (https://github.com/symfony/yaml) (ignored by PatternFilter(userProvided: true, string: /symfony\/.*/))
+ ○ twig/extra-bundle (https://github.com/twigphp/twig-extra-bundle) (ignored by PatternFilter(userProvided: true, string: /twig\/.*/))
+ ○ twig/twig (https://github.com/twigphp/Twig) (ignored by PatternFilter(userProvided: true, string: /twig\/.*/))
+
+ Zombies exclusions (did not match any package)
+```
+
+Remarks:
+- Symfony bundles have been excluded with pattern filter in [`composer-unused.php`](./composer-unused.php), as these are not recognized as "used" (as there are likely no references except using in the YAML config).
+- Library `adrenalinkin/doctrine-naming-strategy` has been used in the [`services.yaml`](./config/services.yaml) but is not recognized as used.
+- Library `alexandre-daubois/monolog-processor-collection` has been used in the [`services.yaml`](./config/services.yaml) but is not recognized as used.
+- Library `dukecity/doctrineextensions` has been used in the [`doctrine_extensions.yaml`](./config/packages/doctrine_extensions.yaml) but is not recognized as used.
+- Additional PHP files in [`config/schemas`] have been added to glob pattern but are not recognized as used.
+
+---
+
 <h1 align="center">🎼 Symfony Docker 🐋</h1>
 
 <div align="center">
